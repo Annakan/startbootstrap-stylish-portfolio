@@ -1,4 +1,6 @@
 "use strict";
+// Library loads
+const path = require('path');
 
 // Load plugins
 const autoprefixer = require("gulp-autoprefixer");
@@ -13,12 +15,34 @@ const rename = require("gulp-rename");
 const sass = require("gulp-sass");
 const uglify = require("gulp-uglify");
 
+
 // Load package.json for banner
 const pkg = require('./package.json');
 
+// useful assets and output paths
+const theme_path = path.join(path.dirname(__dirname));
+const assets_path = path.join(theme_path, 'assets');
+const src_path = path.join(theme_path, 'src');
+const src_scss_path = path.join(src_path, 'scss');
+const src_js_path = path.join(src_path, 'js');
+
+// const output_path = path.join(assets_path, 'static', 'gen');
+
+// source patterns
+const scss_src_pattern = path.join(src_scss_path, "/**/*.scss");
+const js_src_pattern = [
+      path.join(src_js_path, "/**/*.js"),
+      '!'+path.join(src_path, "./js/**/*.min.js") // but we should never have .min.js file there ....
+    ];
+
+const js_dest = path.join(assets_path, 'js');
+const css_dest = path.join(assets_path, 'css');
+const html_dest = join(assets_path, 'html');
+
+
 // Set the banner content
 const banner = ['/*!\n',
-  ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
+  ' * Adapted from  Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
   ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
   ' * Licensed under <%= pkg.license %> (https://github.com/BlackrockDigital/<%= pkg.name %>/blob/master/LICENSE)\n',
   ' */\n',
@@ -50,24 +74,24 @@ function clean() {
 // Bring third party dependencies from node_modules into vendor directory
 function modules() {
   // Bootstrap
-  var bootstrap = gulp.src('./node_modules/bootstrap/dist/**/*')
+  const bootstrap = gulp.src('./node_modules/bootstrap/dist/**/*')
     .pipe(gulp.dest('./vendor/bootstrap'));
   // Font Awesome
-  var fontAwesome = gulp.src('./node_modules/@fortawesome/**/*')
+  const fontAwesome = gulp.src('./node_modules/@fortawesome/**/*')
     .pipe(gulp.dest('./vendor'));
   // jQuery Easing
-  var jqueryEasing = gulp.src('./node_modules/jquery.easing/*.js')
+  const jqueryEasing = gulp.src('./node_modules/jquery.easing/*.js')
     .pipe(gulp.dest('./vendor/jquery-easing'));
   // jQuery
-  var jquery = gulp.src([
+  const jquery = gulp.src([
       './node_modules/jquery/dist/*',
       '!./node_modules/jquery/dist/core.js'
     ])
     .pipe(gulp.dest('./vendor/jquery'));
   // Simple Line Icons
-  var simpleLineIconsFonts = gulp.src('./node_modules/simple-line-icons/fonts/**')
+  const simpleLineIconsFonts = gulp.src('./node_modules/simple-line-icons/fonts/**')
     .pipe(gulp.dest('./vendor/simple-line-icons/fonts'));
-  var simpleLineIconsCSS = gulp.src('./node_modules/simple-line-icons/css/**')
+  const simpleLineIconsCSS = gulp.src('./node_modules/simple-line-icons/css/**')
     .pipe(gulp.dest('./vendor/simple-line-icons/css'));
   return merge(bootstrap, fontAwesome, jquery, jqueryEasing, simpleLineIconsFonts, simpleLineIconsCSS);
 }
@@ -75,7 +99,7 @@ function modules() {
 // CSS task
 function css() {
   return gulp
-    .src("./scss/**/*.scss")
+    .src(scss__pattern)
     .pipe(plumber())
     .pipe(sass({
       outputStyle: "expanded",
@@ -89,22 +113,19 @@ function css() {
     .pipe(header(banner, {
       pkg: pkg
     }))
-    .pipe(gulp.dest("./css"))
+    .pipe(gulp.dest(css_dest))
     .pipe(rename({
       suffix: ".min"
     }))
     .pipe(cleanCSS())
-    .pipe(gulp.dest("./css"))
+    .pipe(gulp.dest(css_dest))
     .pipe(browsersync.stream());
 }
 
 // JS task
 function js() {
   return gulp
-    .src([
-      './js/*.js',
-      '!./js/*.min.js'
-    ])
+    .src(js_src_pattern)
     .pipe(uglify())
     .pipe(header(banner, {
       pkg: pkg
@@ -112,14 +133,14 @@ function js() {
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('./js'))
+    .pipe(gulp.dest(js_dest))
     .pipe(browsersync.stream());
 }
 
 // Watch files
 function watchFiles() {
-  gulp.watch("./scss/**/*", css);
-  gulp.watch("./js/**/*", js);
+  gulp.watch(scss_src_pattern, css);
+  gulp.watch(js_src_pattern, js);
   gulp.watch("./**/*.html", browserSyncReload);
 }
 

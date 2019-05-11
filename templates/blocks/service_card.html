@@ -1,0 +1,9 @@
+<span {% if this.tooltip %} data-toggle="tooltip"  title="{{ this.tooltip }}" data-placement="top" {% endif %}>
+    <span class="service-icon rounded-circle mx-auto mb-3 service-card-block service-card-{{ this.class }}">
+        <i class="{{ this.font_icon }}"></i>
+    </span>
+    <h4>
+        <strong>{{ this.title }}</strong>
+    </h4>
+    <p class="text-faded mb-0">{{ this.blurb }}</p>
+</span>

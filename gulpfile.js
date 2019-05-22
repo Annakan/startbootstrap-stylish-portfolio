@@ -158,6 +158,7 @@ function watchFiles() {
 // Define complex tasks
 const vendor = gulp.series(clean, modules);
 const build = gulp.series(vendor, gulp.parallel(css, js));
+const fastbuild = gulp.series(gulp.parallel(css, js));
 // const watch = gulp.series(build, gulp.parallel(watchFiles, browserSync));
 const watch = gulp.series(build, gulp.parallel(watchFiles));
 
@@ -168,4 +169,5 @@ exports.clean = clean;
 exports.vendor = vendor;
 exports.build = build;
 exports.watch = watch;
+exports.fastbuild = fastbuild;
 exports.default = build;

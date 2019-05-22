@@ -1,0 +1,32 @@
+<!-- Navigation -->
+<a class="menu-toggle rounded" href="#">
+    <i class="fas fa-bars"></i>
+</a>
+<nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a class="js-scroll-trigger" href="/">{{ config.THEME_SETTINGS.short_site_title }}</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#page-top">Home</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#about">About</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#services">Services</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#articles">Articles</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#contact">Contact</a>
+        </li>
+        {% for href, title in bag('nav', this.alt) %}
+            <li {% if this.is_child_of(href) %} class="sidebar-nav-item active" {% else %}
+                                                class="sidebar-nav-item"{% endif %}>
+                <a class="nav-item" href="{{ href|url }}">{{ title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</nav>

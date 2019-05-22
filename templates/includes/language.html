@@ -1,0 +1,23 @@
+<!-- Navigation -->
+<span id="menu-lang" class="menu-nav dropdown">
+    {% set alternative = config.get_alternative(this.alt) %}
+    {% set alt_metadata = bag('locales_meta', this.alt) %}
+    {% set flag_img = 'icons/flags/' ~ alt_metadata['icon'] ~ '.png' %}
+
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {% set flag_img = 'icons/flags/' ~ alt_metadata['icon'] ~ '.png' %}
+    {% set lang_name = alternative['name']['en'] %}
+    <img alt="{{ lang_name }}" src="{{ flag_img |asseturl }}">
+    </a>
+    <span class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    {% for alt_code in config.list_alternatives() %}
+        {% set alternative = config.get_alternative(alt_code) %}
+        {% set alt_metadata = bag('locales_meta', alt_code) %}
+            <a class="dropdown-item" href="{{ '.'|url(alt=alt_code) }}">
+                {% set flag_img = 'icons/flags/' ~ alt_metadata['icon'] ~ '.png' %}
+                {% set lang_name = alternative['name']['en'] %}
+                <img alt="{{ lang_name }}" src="{{ flag_img |asseturl }}"> {{ lang_name }}
+            </a>
+    {% endfor %}
+    </span>
+</span>

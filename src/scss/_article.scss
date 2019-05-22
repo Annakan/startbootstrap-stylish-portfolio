@@ -1,0 +1,29 @@
+.masthead.article {
+  min-height: 25rem;
+  max-height: 25vh;
+  padding-top: 0;
+  padding-bottom: 0;
+  h1 {
+    font-size: 4.5rem;
+  }
+}
+
+img.incircle {
+  object-fit: cover;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
+
+
+.article_page footer.footer {
+  position: absolute;
+  bottom: 0;
+  //height: 60px;
+  width: 100%;
+
+  margin-bottom: 0px;
+  margin-top: 1rem;
+  padding: unset;
+  background-color: $secondary;
+}

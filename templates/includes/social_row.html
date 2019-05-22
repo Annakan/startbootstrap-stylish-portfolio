@@ -1,0 +1,16 @@
+{% macro show_post(theme_id, icon='icon-question') %}
+    {% if config.THEME_SETTINGS[theme_id]%}
+        <li class="list-inline-item">
+            <a class="social-link rounded-circle text-white mr-3"
+               href="https://www.facebook.com/{{ config.THEME_SETTINGS[theme_id] }}" target="_blank">
+                <i class="{{ icon }}"></i>
+            </a>
+        </li>
+    {% endif %}
+{% endmacro %}
+
+<ul class="list-inline p-2 ">
+{{ show_post('facebookID','icon-social-facebook') }}
+{{ show_post('twitterID','icon-social-twitter') }}
+{{ show_post('instagramID','icon-social-instagram') }}
+</ul>

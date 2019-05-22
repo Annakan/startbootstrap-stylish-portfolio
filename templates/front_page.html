@@ -1,45 +1,9 @@
 {% extends "layout.html" %}
 
-{% block title %} {{ this.site_title }}{% endblock %}
+{% block title %} {{  config.THEME_SETTINGS.site_title }}{% endblock %}
 
-{% block body %}
-    <body id="page-top">
-
-    <!-- Navigation -->
-    <a class="menu-toggle rounded" href="#">
-        <i class="fas fa-bars"></i>
-    </a>
-    <nav id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a class="js-scroll-trigger" href="#page-top">Start Bootstrap</a>
-            </li>
-            <li class="sidebar-nav-item">
-                <a class="js-scroll-trigger" href="#page-top">Home</a>
-            </li>
-            <li class="sidebar-nav-item">
-                <a class="js-scroll-trigger" href="#about">About</a>
-            </li>
-            <li class="sidebar-nav-item">
-                <a class="js-scroll-trigger" href="#services">Services</a>
-            </li>
-            <li class="sidebar-nav-item">
-                <a class="js-scroll-trigger" href="#articles">Articles</a>
-            </li>
-            <li class="sidebar-nav-item">
-                <a class="js-scroll-trigger" href="#contact">Contact</a>
-            </li>
-            {% for href, title in bag('nav', this.alt) %}
-                <li {% if this.is_child_of(href) %} class="sidebar-nav-item active" {% else %}
-                                                    class="sidebar-nav-item"{% endif %}>
-                    <a class="nav-item" href="{{ href|url }}">{{ title }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    </nav>
-
-    <!-- Header -->
-    <header class="masthead d-flex">
+{% block masthead %}
+    <header class="masthead frontpage d-flex">
         <div class="container text-center my-auto">
             <h1 class="mb-1">{{ this.masthead }}</h1>
             <h3 class="mb-5">
@@ -49,7 +13,9 @@
         </div>
         <div class="overlay"></div>
     </header>
+{% endblock %}
 
+{% block page_content %}
     <!-- About -->
     <section class="content-section bg-light" id="about">
         <div class="container text-center">
@@ -71,10 +37,10 @@
                 <h2 class="mb-5">The Benefits</h2>
             </div>
             <div class="row">
-                {% for blk in this.service_cards.blocks %}
-                     <div class="block block-{{ blk._flowblock }} col-lg-3 col-md-6 mb-5 mb-lg-0">
-                        {{ blk }}
-                     </div>
+                {% for card_blk in this.service_cards.blocks %}
+                    <div class="block block-{{ card_blk._flowblock }} col-lg-3 col-md-6 mb-5 mb-lg-0">
+                        {{ card_blk }}
+                    </div>
                 {% endfor %}
             </div>
         </div>
@@ -96,20 +62,20 @@
                 <h2 class="mb-5">Why Micro Capsules Hair Extension</h2>
             </div>
             <div class="row no-gutters">
-                {% for cp in this.children %}
+                {% for article in this.children %}
                     <div class="col-lg-6">
-                        <a class="article-item" href="#">
+                        <a class="article-item" href="{{ article |url }}">
                             <div class="caption">
-                              <div class="caption-content">
-                                <h2>{{ cp.title }}</h2>
-                                <p class="mb-0">{{ cp.excerpt }}</p>
-                              </div>
+                                <div class="caption-content">
+                                    <h2>{{ article.title }}</h2>
+                                    <p class="mb-0">{{ article.excerpt }}</p>
+                                </div>
                             </div>
-                            {% set first_image = cp.attachments.images.first() %}
+                            {% set first_image = article.attachments.images.first() %}
                             {% if first_image %}
-                                <img class="img-fluid" src="{{ first_image |url }}" alt="{{ cp.title }}">
+                                <img class="img-circle" src="{{ first_image |url }}" alt="{{ article.title }}">
                             {% endif %}
-                         </a>
+                        </a>
                     </div>
                 {% endfor %}
             </div>
@@ -120,8 +86,10 @@
     <section class="content-section bg-primary text-white">
         <div class="container text-center">
             <h2 class="mb-4">{{ this.call_to_action_intro |default('Adorable call to action buttons') }}</h2>
-            <a href="{{ this.call_to_action_button1_url |default('#') |url }}" class="btn btn-xl btn-light mr-4">{{ this.call_to_action_button1_text |default("button1" )}}</a>
-            <a href="{{ this.call_to_action_button2_url |default('#') |url  }}" class="btn btn-xl btn-dark">{{ this.call_to_action_button2_text |default("button2" ) }}</a>
+            <a href="{{ this.call_to_action_button1_url |default('#') |url }}"
+               class="btn btn-xl btn-light mr-4">{{ this.call_to_action_button1_text |default("button1" ) }}</a>
+            <a href="{{ this.call_to_action_button2_url |default('#') |url }}"
+               class="btn btn-xl btn-dark">{{ this.call_to_action_button2_text |default("button2" ) }}</a>
         </div>
         {% if this.call_to_action_text %}
             <div class="container call-to-action-text text-center">{{ this.call_to_action_text }}</div>
@@ -138,36 +106,4 @@
         </small>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer text-center">
-        <div class="container">
-            <ul class="list-inline mb-5">
-                <li class="list-inline-item">
-                    <a class="social-link rounded-circle text-white mr-3" href="#">
-                        <i class="icon-social-facebook"></i>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a class="social-link rounded-circle text-white mr-3" href="#">
-                        <i class="icon-social-twitter"></i>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a class="social-link rounded-circle text-white" href="#">
-                        <i class="icon-social-github"></i>
-                    </a>
-                </li>
-            </ul>
-            <p class="text-muted small mb-0">Copyright &copy; TechArtServ - KBeauty 2019</p>
-        </div>
-    </footer>
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    {% include 'includes/post_footer_assets.html' %}
-
-    </body>
 {% endblock %}

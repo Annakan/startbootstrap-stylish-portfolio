@@ -52,6 +52,7 @@
   "scripts": {
     "watch": "gulp watch",
     "build": "gulp build",
+    "fastbuild": "gulp fastbuild",
     "extract-vendor": "gulp vendor"
   }
 }

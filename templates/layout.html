@@ -14,10 +14,33 @@
     {% if (striphtmltags is defined) and (keywords is defined) %}
       <meta name="keywords" content="{{ this.meta_keywords or this.body|striphtmltags|keywords|join(', ') or this._slug }}">
     {% endif %}#}
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{{ config.THEME_SETTINGS.site_title }} {% endblock %}</title>
     {% include './includes/head_assets.html' %}
 </head>
 
-{% block body %}{% endblock %}
+<body id="page-top" class="{{ this._data['_model'] }}">
+    {%  include 'includes/language.html' %}
+    {%  include 'includes/navigation.html' %}
+
+    <!-- Header -->
+    {% block masthead %}{% endblock %}
+
+    {% block page_content %}{% endblock %}
+
+    {% block footer %}
+        <!-- Footer -->
+        <footer class="footer text-center">
+            <div class="container social-row">
+                {%  include 'includes/social_row.html' %}
+                <p class="text-muted small mb-0">Copyright &copy; TechArtServ - KBeauty 2019</p>
+            </div>
+        </footer>
+    {% endblock %}
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top"><i class="fas fa-angle-up"></i></a>
+
+    {% include 'includes/post_footer_assets.html' %}
+</body>
 
 </html>

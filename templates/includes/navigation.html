@@ -2,6 +2,12 @@
 <a class="menu-toggle rounded" href="#">
     <i class="fas fa-bars"></i>
 </a>
+
+<a id="gallery-shortcut"  class="" href="{{ site.root.children.filter(F._model=='gallery_page').all()[0] | url }}">
+    <i class="fixed-button-colors-inverted fas fa-images fa-3x"></i>
+</a>
+
+
 <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <li class="sidebar-brand">

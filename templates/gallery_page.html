@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block masthead %}
+    <header class="masthead gallery d-flex" id="gallery">
+        <div class="container text-center my-3">
+            <h1 class="mb-1">{{ this.title }}</h1>
+        </div>
+    </header>
+{% endblock %}
+
+{% block page_content %}
+    <section class="content-section gallery-content">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-12 mx-auto " id="gallery-images">
+                    <div class="gallery-container">
+                        {% for image in this.attachments.images %}
+                            <a class="col-lg-4 col-md-4 col-sm-4 col-xs-6" href="{{ image|url }}"><img class="gallery-thumbnail" src="{{ image.thumbnail(200, 200, mode="crop", quality=40)|url }}" alt=""></a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block custom_footer_js %}
+    <!-- Magnific Popup core JS file -->
+    <script src="{{ 'js/magnific _gallery.min.js'  |asseturl }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.gallery-container').magnificPopup({
+                delegate: 'a',
+                type: 'image',
+                tLoading: 'Loading image #%curr%...',
+                mainClass: 'thumbnail',
+                gallery: {
+                    enabled: true,
+                    navigateByImgClick: true,
+                    preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+                },
+                image: {
+                    tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+                    titleSrc: function (item) {
+                        return item.el.attr('title') + '<small > (c)KBeauty </small>';
+                    }
+                }
+            });
+
+        });
+    </script>
+{% endblock %}

@@ -50,7 +50,9 @@
     <section class="callout">
         <div class="container text-center">
             <h2 class="mx-auto mb-5">{{ this.callout }}</h2>
-            <a class="btn btn-primary btn-xl" href="{{ this.callout_url }}">{{ this.callout_url_text }}</a>
+            {%  for gallery in  site.root.children.filter(F._model=='gallery_page') %}
+                <a class="btn btn-primary btn-xl" href="{{ gallery.url_path }}">{{ gallery['title'] }}</a>
+            {%  endfor %}
         </div>
     </section>
 
@@ -62,7 +64,8 @@
                 <h2 class="mb-5">Why Micro Capsules Hair Extension</h2>
             </div>
             <div class="row no-gutters">
-                {% for article in this.children %}
+
+                {% for article in this.children.all()[0].children %}
                     <div class="col-lg-6">
                         <a class="article-item" href="{{ article |url }}">
                             <div class="caption">

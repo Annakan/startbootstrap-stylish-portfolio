@@ -4,7 +4,8 @@
     {% set alt_metadata = bag('locales_meta', this.alt) %}
     {% set flag_img = 'icons/flags/' ~ alt_metadata['icon'] ~ '.png' %}
 
-    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="dropdown-toggle fixed-button-colors-inverted"
+       href="#" role="button" id="langageMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     {% set flag_img = 'icons/flags/' ~ alt_metadata['icon'] ~ '.png' %}
     {% set lang_name = alternative['name']['en'] %}
     <img alt="{{ lang_name }}" src="{{ flag_img |asseturl }}">

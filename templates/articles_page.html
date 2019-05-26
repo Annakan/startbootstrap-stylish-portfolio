@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block masthead %}
+    <header class="masthead article d-flex">
+        <div class="container text-center my-3">
+            <h1 class="mb-1">{{ this.title }}</h1>
+        </div>
+    </header>
+{% endblock %}
+{% block page_content %}
+    <section class="content-section articles">
+        <div class="container">
+            <div class="row no-gutters" id="article">
+                <div class="col-lg-8 mx-auto">
+                    {{ this.content }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 mx-auto text-center">
+                    <div class="row no-gutters">
+                        {% for article in this.children%}
+                            <div class="col-lg-6">
+                                <a class="article-item" href="{{ article |url }}">
+                                    <div class="caption">
+                                        <div class="caption-content">
+                                            <h2>{{ article.title }}</h2>
+                                            <p class="mb-0">{{ article.excerpt }}</p>
+                                        </div>
+                                    </div>
+                                    {% set first_image = article.attachments.images.first() %}
+                                    {% if first_image %}
+                                        <img class="img-circle" src="{{ first_image |url }}" alt="{{ article.title }}">
+                                    {% endif %}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

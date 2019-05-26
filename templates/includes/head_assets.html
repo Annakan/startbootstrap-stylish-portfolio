@@ -10,3 +10,14 @@
 
 <!-- Custom CSS -->
 <link href="{{ 'css/stylish-portfolio.min.css' |asseturl }}" rel="stylesheet">
+
+{% block custom_header_css %}
+{% endblock %}
+
+{% block custom_header_js %}
+{% endblock %}
+
+<script>
+    {%  block header_script %}
+    {% endblock %}
+</script>

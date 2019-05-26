@@ -19,3 +19,6 @@ $secondary: #405975 !default;
 $tertiary:  #405975 !default;
 $quaternary:  #ffdbf2 !default;
 $background: white !default;
+$fixed-buttons-color : #fff !default;;
+$fixed-buttons-color2 : fade-out($gray-800, .5) !default;
+$fixed-buttons-bg : rgba(0, 0, 0, 0) !default;

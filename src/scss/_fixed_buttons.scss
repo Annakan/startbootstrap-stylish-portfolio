@@ -1,0 +1,43 @@
+.fixed-button-colors {
+  color : $fixed-buttons-color2;
+  background-color: $fixed-buttons-color;
+}
+
+.fixed-button-colors-inverted {
+  color : $fixed-buttons-color2;
+  background-color: $fixed-buttons-bg;
+}
+
+#menu-lang {
+  position: fixed;
+  left: 15px;
+  top: 15px;
+  text-align: center;
+  line-height: 50px;
+  z-index: 999;
+
+  &:hover {background-color: $background;}
+
+  .dropdown-menu {
+    background-color: $secondary;
+  }
+
+  .dropdown-item {
+    background-color: $secondary;
+    &:hover{
+       background-color: $background;
+    }
+  }
+}
+
+#gallery-shortcut {
+  position: fixed;
+  right: 15px;
+  top: 80px;
+  text-align: center;
+  z-index: 999;
+
+  &:hover{
+    color: $secondary;
+    }
+}

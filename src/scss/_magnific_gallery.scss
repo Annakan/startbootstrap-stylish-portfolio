@@ -1,6 +1,5 @@
 /* Magnific Popup CSS */
-
-@import "settings";
+@import "magnific_settings";
 
 ////////////////////////
 //
@@ -539,4 +538,9 @@ button {
     padding-left: $mfp-popup-padding-left-mobile;
     padding-right: $mfp-popup-padding-left-mobile;
   }
+}
+
+// (c) TechArtServ
+.gallery-thumbnail  {
+padding : 2px;
 }

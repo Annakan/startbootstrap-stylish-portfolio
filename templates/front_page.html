@@ -1,14 +1,22 @@
 {% extends "layout.html" %}
 
-{% block title %} {{  config.THEME_SETTINGS.site_title }}{% endblock %}
+{% block title %} {{ config.THEME_SETTINGS.site_title }}{% endblock %}
+
+{% block hotnews %}
+    {% if this.news %}
+        <div class="row no-gutters hotnews">
+            <div class="col text-center mx-auto">{{ this.news }}</div>
+        </div>
+    {% endif %}
+{% endblock %}
 
 {% block masthead %}
     <header class="masthead frontpage d-flex">
         <div class="container text-center my-auto">
-            <h1 class="mb-1">{{ this.masthead }}</h1>
-            <h3 class="mb-5">
-                <em>{{ this.sub_masthead }}</em>
-            </h3>
+            <h1 class="mb-3">{{ this.masthead }}</h1>
+            <div class="mb-5 col-lg-8 offset-lg-2">
+                {{ this.sub_masthead }}
+            </div>
             <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
         </div>
         <div class="overlay"></div>
@@ -21,8 +29,16 @@
         <div class="container text-center">
             <div class="row">
                 <div class="col-lg-10 mx-auto">
+                    <a class="link-unstyled about-url" href="{{ this.about_url }}">
                     <h2>{{ this.about_title }}</h2>
                     <p class="lead mb-5">{{ this.about_content }}</p>
+                    {% set about_pic = this.about_picture %}
+                    {% if about_pic %}
+                        <h3 class="mb-5">
+                            <img class="incircle" src="{{ about_pic|url }}" alt="{{ this.about_title }}">
+                        </h3>
+                    {% endif %}
+                    </a>
                     <a class="btn btn-dark btn-xl js-scroll-trigger" href="#services">The Benefits</a>
                 </div>
             </div>
@@ -50,9 +66,9 @@
     <section class="callout">
         <div class="container text-center">
             <h2 class="mx-auto mb-5">{{ this.callout }}</h2>
-            {%  for gallery in  site.root.children.filter(F._model=='gallery_page') %}
+            {% for gallery in  site.root.children.filter(F._model=='gallery_page') %}
                 <a class="btn btn-primary btn-xl" href="{{ gallery.url_path }}">{{ gallery['title'] }}</a>
-            {%  endfor %}
+            {% endfor %}
         </div>
     </section>
 

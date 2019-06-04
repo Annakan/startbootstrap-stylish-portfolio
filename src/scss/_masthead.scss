@@ -15,8 +15,8 @@
   }
 
   h1 {
-    font-size: 4rem;
-    margin: 0;
+    font-size: 3rem;
+    margin-right: 50px;  // room for hamburger menu at low size
     padding: 0;
   }
 
@@ -31,6 +31,7 @@
 
     h1 {
       font-size: 5.5rem;
+      margin: 0;
     }
   }
 }

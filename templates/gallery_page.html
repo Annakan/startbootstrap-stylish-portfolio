@@ -9,14 +9,39 @@
 {% endblock %}
 
 {% block page_content %}
-    <section class="content-section gallery-content">
-        <div class="container">
-            <div class="row no-gutters">
-                <div class="col-lg-12 mx-auto " id="gallery-images">
-                    <div class="gallery-container">
-                        {% for image in this.attachments.images %}
-                            <a class="col-lg-4 col-md-4 col-sm-4 col-xs-6" href="{{ image|url }}"><img class="gallery-thumbnail" src="{{ image.thumbnail(200, 200, mode="crop", quality=40)|url }}" alt=""></a>
-                        {% endfor %}
+    <section>
+        <div class="content-section gallery-content">
+            <div class="row">
+                <div class="col-centered mx-auto"><h2 class="text-center">In pictures</h2></div>
+            </div>
+            <div class="container image-gallery-container">
+                <div class="row justify-content-md-center">
+                    <div class="col col-lg-12">
+                        <div class="mx-auto gallery gallery-image" id="gallery-images">
+                            {% for image in this.attachments.images %}
+                                <a class="col-lg-4 col-md-4 col-sm-4 col-xs-6" href="{{ image|url }}"><img
+                                        class="gallery-thumbnail"
+                                        src="{{ image.thumbnail(200, 200, mode="crop", quality=40)|url }}" alt=""></a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-centered mx-auto"><h2 class="text-center">In action</h2></div>
+            </div>
+            <div class="container video-gallery-container">
+                <div class="row justify-content-md-center">
+                    <div class="col col-lg-12">
+                        <div class="mx-auto gallery gallery-video" id="gallery-videos">
+                            {% for video in this.attachments.videos %}
+                                <video controls class="col-lg-3 col-md-3 col-sm-3 col-xs-6 p-1">
+                                    <source src="{{ video|url }}" type="video/mp4">
+                                    <p>Your browser doesn't support HTML5 video</p>
+                                </video>
+                                {#                            <a class="col-lg-4 col-md-4 col-sm-4 col-xs-6" href="{{ video|url }}"><img class="gallery-thumbnail" src="{{ video.frame(0).thumbnail(200, 200, mode="crop")|url }}" alt=""></a>#}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -30,7 +55,7 @@
     <script src="{{ 'js/magnific _gallery.min.js'  |asseturl }}"></script>
     <script>
         $(document).ready(function () {
-            $('.gallery-container').magnificPopup({
+            $('.image-gallery-container').magnificPopup({
                 delegate: 'a',
                 type: 'image',
                 tLoading: 'Loading image #%curr%...',
@@ -47,7 +72,6 @@
                     }
                 }
             });
-
         });
     </script>
 {% endblock %}

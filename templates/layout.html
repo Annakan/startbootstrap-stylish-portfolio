@@ -19,12 +19,11 @@
 </head>
 
 <body id="page-top" class="{{ this._data['_model'] }}">
+    {% block hotnews %}{% endblock %}
     {%  include 'includes/language.html' %}
     {%  include 'includes/navigation.html' %}
-
     <!-- Header -->
     {% block masthead %}{% endblock %}
-
     {% block page_content %}{% endblock %}
 
     {% block footer %}

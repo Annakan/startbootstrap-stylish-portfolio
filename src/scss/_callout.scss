@@ -1,10 +1,10 @@
 // Callout
 .callout {
-  padding: 15rem 0;
+  padding: 7rem 0;
   background: linear-gradient(90deg, fade-out($white, 0.9) 0%, fade-out($white, 0.9) 100%), url('../img/bg-callout.jpg');
-  background-position: center center;
+  background-position: center -250px;
   background-repeat: no-repeat;
-  background-size: cover;
+  //background-size: cover;
   h2 {
     font-size: 3.5rem;
     font-weight: 700;

@@ -15,8 +15,8 @@ body {
 
 // Content Section
 .content-section {
-  padding-top: 7.5rem;
-  padding-bottom: 7.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .content-section-heading {
@@ -85,5 +85,43 @@ h6 {
   }
   i {
     font-weight: 800;
+  }
+}
+ .hotnews {
+   margin-bottom: 0;
+   background-color: $background;
+   color: $secondary;
+   font-size: 1.5rem;
+   p {
+        line-height: 1.2;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 0;
+
+   }
+ }
+
+ .link-unstyled {
+  &,
+  &:visited,
+  &:hover,
+  &:active,
+  &:focus,
+  &:active:hover {
+    font-style: inherit;
+    color: inherit;
+    background-color: transparent;
+    font-size: inherit;
+    text-decoration: none;
+    font-variant: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    font-family: inherit;
+    border-radius: inherit;
+    border: inherit;
+    outline: inherit;
+    box-shadow: inherit;
+    padding: inherit;
+    vertical-align: inherit;
   }
 }

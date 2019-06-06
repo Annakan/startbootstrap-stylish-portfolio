@@ -30,14 +30,14 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <a class="link-unstyled about-url" href="{{ this.about_url }}">
-                    <h2>{{ this.about_title }}</h2>
-                    <p class="lead mb-5">{{ this.about_content }}</p>
-                    {% set about_pic = this.about_picture %}
-                    {% if about_pic %}
-                        <h3 class="mb-5">
-                            <img class="incircle" src="{{ about_pic|url }}" alt="{{ this.about_title }}">
-                        </h3>
-                    {% endif %}
+                        <h2>{{ this.about_title }}</h2>
+                        <p class="lead mb-5">{{ this.about_content }}</p>
+                        {% set about_pic = this.about_picture %}
+                        {% if about_pic %}
+                            <h3 class="mb-5">
+                                <img class="incircle" src="{{ about_pic|url }}" alt="{{ this.about_title }}">
+                            </h3>
+                        {% endif %}
                     </a>
                     <a class="btn btn-dark btn-xl js-scroll-trigger" href="#services">The Benefits</a>
                 </div>
@@ -105,10 +105,14 @@
     <section class="content-section bg-primary text-white">
         <div class="container text-center">
             <h2 class="mb-4">{{ this.call_to_action_intro |default('Adorable call to action buttons') }}</h2>
-            <a href="{{ this.call_to_action_button1_url |default('#') |url }}"
-               class="btn btn-xl btn-light mr-4">{{ this.call_to_action_button1_text |default("button1" ) }}</a>
-            <a href="{{ this.call_to_action_button2_url |default('#') |url }}"
-               class="btn btn-xl btn-dark">{{ this.call_to_action_button2_text |default("button2" ) }}</a>
+            {% if this.call_to_action_button1_url %}
+                <a href="{{ this.call_to_action_button1_url |default('#') }}"
+                   class="btn btn-xl btn-light mr-4">{{ this.call_to_action_button1_text |default("button1") }}</a>
+            {% endif %}
+            {% if this.call_to_action_button2_url %}
+                <a href="{{ this.call_to_action_button2_url |default('#')}}"
+                   class="btn btn-xl btn-dark">{{ this.call_to_action_button2_text |default("button2" ) }}</a>
+            {% endif %}
         </div>
         {% if this.call_to_action_text %}
             <div class="container call-to-action-text text-center">{{ this.call_to_action_text }}</div>
@@ -116,13 +120,15 @@
     </section>
 
     <!-- Map -->
-    <section id="contact" class="map">
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=+Bstille,+Paris,+France&amp;aq=0&amp;oq=twitter&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-        <br/>
-        <small>
-            <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=+Bstille,+Paris,+France&amp;aq=0&amp;oq=twitter&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-        </small>
-    </section>
+    {% if this.encoded_map_url %}
+        <section id="contact" class="map">
+            <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                    src="https://maps.google.com/maps?f={{ this.encoded_map_url }}"></iframe>
+            <br/>
+            <small>
+                <a href="https://maps.google.com/maps?f={{ this.encoded_map_url }}"></a>
+            </small>
+        </section>
+    {% endif %}
 
 {% endblock %}

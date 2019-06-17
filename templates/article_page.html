@@ -1,16 +1,30 @@
 {% extends "layout.html" %}
 
+{%  block custom_header_style %}
+    {% set bg_img = this.image_background %}
+    {% if bg_img %}
+        body {
+         background-image: url({{ bg_img |url }});
+         background-size: cover;
+         background-repeat: no-repeat;
+{#         background-position: 75%;#}
+        }
+    {% endif %}
+
+{% endblock %}
+
 {% block masthead %}
     <header class="masthead article d-flex">
+
         <div class="container text-center my-3">
             <h1 class="mb-1">{{ this.title }}</h1>
-            {% set first_image = this.attachments.images.first() %}
-            {% if first_image %}
-                <h3 class="mb-5">
-                    <img class="incircle" src="{{ first_image |url }}"
-                         alt="{{ this.title }}">
-                </h3>
-            {% endif %}
+{#            {% set first_image = this.attachments.images.first() %}#}
+{#            {% if first_image %}#}
+{#                <h3 class="mb-5">#}
+{#                    <img class="incircle" src="{{ first_image |url }}"#}
+{#                         alt="{{ this.title }}">#}
+{#                </h3>#}
+{#            {% endif %}#}
         </div>
         <div class="overlay"></div>
     </header>

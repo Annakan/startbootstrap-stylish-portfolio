@@ -1,5 +1,7 @@
 .article_page {
 
+  color : #fff;
+
   .masthead {
     min-height: 15rem;
     max-height: 15vh;
@@ -9,10 +11,15 @@
 
     & h1 {
       font-size: 3.5rem;
+      //color: $secondary;
     }
-
-
   }
+
+  //h2, h3, h4, h5, h6 {
+  //    color: $secondary;
+  //  }
+
+
   // Content Section
   .content-section {
     padding-top: 6rem;
@@ -41,5 +48,7 @@
     height: 200px;
     width: 200px;
   }
+
+  body {}
 
 }

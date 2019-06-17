@@ -90,9 +90,9 @@
                                     <p class="mb-0">{{ article.excerpt }}</p>
                                 </div>
                             </div>
-                            {% set first_image = article.attachments.images.first() %}
-                            {% if first_image %}
-                                <img class="img-circle" src="{{ first_image |url }}" alt="{{ article.title }}">
+                            {% set excerpt_image = article.attachments.get(article.image_excerpt)  %}
+                            {% if excerpt_image %}
+                                <img class="img-circle" src="{{ excerpt_image |url }}" alt="{{ article.title }}">
                             {% endif %}
                         </a>
                     </div>

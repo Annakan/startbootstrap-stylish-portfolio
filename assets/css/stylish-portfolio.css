@@ -410,6 +410,10 @@ footer.social-row {
   padding-bottom: 1em;
 }
 
+.article_page {
+  color: #fff;
+}
+
 .article_page .masthead {
   min-height: 15rem;
   max-height: 15vh;

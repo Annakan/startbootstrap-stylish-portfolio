@@ -16,6 +16,18 @@
     {% endif %}#}
     <title>{% block title %}{{ config.THEME_SETTINGS.site_title }} {% endblock %}</title>
     {% include './includes/head_assets.html' %}
+    <!-- Custom style-->
+    <style>
+        {% block custom_header_style %}
+        {% endblock %}
+    </style>
+
+
+    <script>
+        {%  block header_script %}
+        {% endblock %}
+    </script>
+
 </head>
 
 <body id="page-top" class="{{ this._data['_model'] }}">

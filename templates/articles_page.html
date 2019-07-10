@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto text-center">
                     <div class="row no-gutters">
-                        {% for article in this.children%}
+                        {% for article in this.children.order_by('sort_key')  %}
                             <div class="col-lg-6">
                                 <a class="article-item" href="{{ article |url }}">
                                     <div class="caption">

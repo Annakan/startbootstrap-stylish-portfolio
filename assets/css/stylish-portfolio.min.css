@@ -368,15 +368,15 @@ h6 {
   }
   .article-item img {
     -webkit-transition: -webkit-clip-path 0.25s ease-out;
-    -webkit-clip-path: inset(-1px);
-    clip-path: inset(-1px);
+    -webkit-clip-path: inset(-15%);
+    clip-path: inset(-15%);
   }
   .article-item:hover img {
     -webkit-clip-path: inset(2rem);
     clip-path: inset(2rem);
   }
   .article-item:hover .caption {
-    background-color: rgba(146, 169, 196, 0.9);
+    background-color: rgba(146, 169, 196, 0.5);
     -webkit-clip-path: inset(2rem);
     clip-path: inset(2rem);
   }

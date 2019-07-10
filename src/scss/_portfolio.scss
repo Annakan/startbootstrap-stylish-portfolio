@@ -42,8 +42,8 @@
     }
     img {
       -webkit-transition: -webkit-clip-path 0.25s ease-out;
-      -webkit-clip-path: inset(-1px);
-      clip-path: inset(-1px);
+      -webkit-clip-path: inset(-15%);
+      clip-path: inset(-15%);
     }
     &:hover {
       img {
@@ -51,7 +51,7 @@
         clip-path: inset(2rem);
       }
       .caption {
-        background-color: fade-out($primary, 0.1);
+        background-color: fade-out($primary, 0.5);
         -webkit-clip-path: inset(2rem);
         clip-path: inset(2rem);
       }

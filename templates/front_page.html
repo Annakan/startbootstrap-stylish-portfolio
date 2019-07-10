@@ -92,7 +92,7 @@
                             </div>
                             {% set excerpt_image = article.attachments.get(article.image_excerpt)  %}
                             {% if excerpt_image %}
-                                <img class="img-circle" src="{{ excerpt_image |url }}" alt="{{ article.title }}">
+                                <img src="{{ excerpt_image |url }}" alt="{{ article.title }}">
                             {% endif %}
                         </a>
                     </div>

@@ -17,7 +17,7 @@
             <div class="mb-5 col-lg-8 offset-lg-2">
                 {{ this.sub_masthead }}
             </div>
-            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">{{ this.know_more }}</a>
         </div>
         <div class="overlay"></div>
     </header>
@@ -35,11 +35,11 @@
                         {% set about_pic = this.about_picture %}
                         {% if about_pic %}
                             <h3 class="mb-5">
-                                <img class="incircle" src="{{ about_pic|url }}" alt="{{ this.about_title }}">
+                                <img class="incircle" src="{{ about_pic|url(alt='en') }}" alt="{{ this.about_title }}">
                             </h3>
                         {% endif %}
                     </a>
-                    <a class="btn btn-dark btn-xl js-scroll-trigger" href="#services">The Benefits</a>
+                    <a class="btn btn-dark btn-xl js-scroll-trigger" href="#services">{{ this.service_cards_title }}</a>
                 </div>
             </div>
         </div>
@@ -49,8 +49,8 @@
     <section class="content-section bg-primary text-white text-center" id="services">
         <div class="container">
             <div class="content-section-heading">
-                <h3 class="text-secondary mb-0">what's special</h3>
-                <h2 class="mb-5">The Benefits</h2>
+                <h3 class="text-secondary mb-0">{{ this.service_cards_blurb }} </h3>
+                <h2 class="mb-5">{{ this.service_cards_title }}</h2>
             </div>
             <div class="row">
                 {% for card_blk in this.service_cards.blocks %}
